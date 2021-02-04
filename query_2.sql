@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS [7_day_rolling_avg];
 to the fact that the primary key would be the date. Using dates as primary keys invites problems.
 
 Naming a field "date" is not best practice as SQL can confuse it for a date function. I am keeping it in this case for the following reasons:
-- It allows these queries to be run on the public data set refreshed daily
+- It allows these queries to be run on the public data set refreshed daily.
 - I am using SQL Server style. The field name is enclosed in bracket, establishing that this a field name and not a function.
 */
 
@@ -19,7 +19,7 @@ CREATE TABLE [7_day_rolling_avg]
   )
 ;
 
--- Group the daily total test results by date
+-- Group the daily total test results by date.
 WITH [cte_date]
   ( 
     [date]
@@ -34,7 +34,7 @@ AS
    GROUP BY [date]
    )
 ,
--- Determine the 7 day rolling average for a 36 date period in order to provide a full dataset for the earliest 6 dates
+-- Determine the 7 day rolling average for a 36 date period in order to provide a full dataset for the earliest 6 dates.
 [cte_avg]
   (
     [date]
@@ -56,7 +56,7 @@ INSERT INTO [7_day_rolling_avg]
    [date]
   ,[7_day_rolling_avg]
   ) 
--- Final query
+-- Final query.
 SELECT
   [date]
  ,SUM([test_results_avg])
