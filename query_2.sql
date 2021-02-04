@@ -1,7 +1,11 @@
+/*The rolling 7 days metric is useful in this case as it mitigates the impact of outliers.
+For example - reporting can be slow on weekends and high on Mondays. Looking at those days in a vaccuum
+can be misleading.*/
+
 DROP TABLE IF EXISTS [7_day_rolling_avg];
 
 /*While it is best practice to include a primary key in every table, I am excluding in this case due
-to the fact that the primary key would be date. Using dates as primary keys invites problems*/
+to the fact that the primary key would be the date. Using dates as primary keys invites problems.*/
 
 CREATE TABLE [7_day_rolling_avg]
   (
