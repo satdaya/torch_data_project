@@ -34,6 +34,7 @@ AS
    GROUP BY [date]
    )
 ,
+
 -- Determine the 7 day rolling average for a 36 date period in order to provide a full dataset for the earliest 6 dates.
 [cte_avg]
   (
@@ -56,6 +57,7 @@ INSERT INTO [7_day_rolling_avg]
    [date]
   ,[7_day_rolling_avg]
   ) 
+  
 -- Final query.
 SELECT
   [date]
