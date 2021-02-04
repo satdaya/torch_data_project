@@ -1,5 +1,5 @@
---I utilized the totalTestResults metric, as it captures the testing variations across states.
---Some states measure the total test by each test encounter. Others measure specimens taken. And a third category measures unique individuals.
+/*This metric is the sum of totalTestResults. I used this as it captures the testing variations across states.
+Some states measure the total test by each test encounter, others measure specimens taken, and some measure unique individuals. */
 
 DROP TABLE IF EXISTS [total_test_results];
 
