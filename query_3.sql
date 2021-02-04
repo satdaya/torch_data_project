@@ -2,10 +2,11 @@ DROP TABLE IF EXISTS [state_positive_rate];
 
 CREATE TABLE [state_positive_rate]
   (
-   [state]            VARCHAR(2)
+   [state]            VARCHAR(2) PRIMARY KEY
   ,[percent_positive] FLOAT
   );
 
+--define the positivity rate by state, excluding territories and DC
 WITH [cte_percentile]
   (
    [state]
@@ -21,10 +22,12 @@ AS
         END
    FROM [all-states-history]
    WHERE [date] BETWEEN DATEADD(day, -30, CAST(GETDATE() AS [date] ) ) AND DATEADD(day, -1, CAST(GETDATE() AS [date] ) )
+   --excluding territories and DC from state list
      AND [state] NOT IN ('DC', 'AS', 'VI', 'PR', 'MP', 'GU')
    GROUP BY [state]
  )
 ,
+-- break the 50 states into quintiles
 [cte_ntile]
   (
     [state]
@@ -47,7 +50,7 @@ INSERT INTO [state_positive_rate]
    [state]
   ,[percent_positive] 
   ) 
-
+-- final query. Showing only the top quintile 
 SELECT
    [state]
   ,SUM([percent_positive])
