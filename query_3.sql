@@ -30,7 +30,8 @@ AS
    GROUP BY [state]
  )
 ,
--- Break the 50 states into quintiles.
+
+-- Break the 50 states into quintiles by positivity rates.
 [cte_ntile]
   (
     [state]
@@ -52,7 +53,8 @@ INSERT INTO [state_positive_rate]
   (
    [state]
   ,[percent_positive] 
-  ) 
+  )
+   
 -- Final query. Displaying only the top quintile of states by positivity.
 SELECT
    [state]
