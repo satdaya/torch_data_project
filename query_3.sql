@@ -1,6 +1,6 @@
 /*The positivity rate is an important but imperfect metric due to the reporting discrepancies across states.
 Counting unique individuals rather than testing encounters may acccount for the the high positivity
-rates in Alabama, Idaho, and South Dakota */
+rates in Alabama, Idaho, and South Dakota. */
 
 DROP TABLE IF EXISTS [state_positive_rate];
 
@@ -10,7 +10,7 @@ CREATE TABLE [state_positive_rate]
   ,[percent_positive] FLOAT
   );
 
---Define the positivity rate by state, excluding territories and DC
+--Define the positivity rate within the last 30 days by state, excluding territories and DC.
 WITH [cte_percentile]
   (
    [state]
@@ -30,7 +30,7 @@ AS
    GROUP BY [state]
  )
 ,
--- break the 50 states into quintiles
+-- Break the 50 states into quintiles.
 [cte_ntile]
   (
     [state]
@@ -53,7 +53,7 @@ INSERT INTO [state_positive_rate]
    [state]
   ,[percent_positive] 
   ) 
--- Final query. Showing only the top quintile.
+-- Final query. Displaying only the top quintile of states by positivity.
 SELECT
    [state]
   ,SUM([percent_positive])
