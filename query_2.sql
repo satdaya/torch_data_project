@@ -5,7 +5,12 @@ can be misleading.*/
 DROP TABLE IF EXISTS [7_day_rolling_avg];
 
 /*While it is best practice to include a primary key in every table, I am excluding in this case due
-to the fact that the primary key would be the date. Using dates as primary keys invites problems.*/
+to the fact that the primary key would be the date. Using dates as primary keys invites problems.
+
+Naming a field "date" is not best practice as SQL can confuse it for a date function. I am keeping it in this case for the following reasons:
+- It allows these queries to be run on the public data set refreshed daily
+- I am using SQL Server style. The field name is enclosed in bracket, establishing that this a field name and not a function.
+*/
 
 CREATE TABLE [7_day_rolling_avg]
   (
